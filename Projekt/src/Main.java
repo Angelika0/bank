@@ -11,15 +11,15 @@ public class Main {
             int options = scan.nextInt();
             if (options == 1) {
                 while (true) {
-                    System.out.println("KLIJENT: 1-DODAJ 2-USUŃ 3-WYSZUKAJ 4-PRZEGLĄDAJ 5-WYJDZ");
+                    System.out.println("KLIENT: 1-DODAJ 2-USUŃ 3-WYSZUKAJ 4-PRZEGLĄDAJ 5-WYJDZ");
                     int options2 = scan.nextInt();
                     if (options2 == 1) {
 
-                        System.out.println("Podaj imie nowego klijenta:");
+                        System.out.println("Podaj imie nowego klienta:");
                         String name =scan.next();
-                        System.out.println("Podaj nazwisko nowego klijenta:");
+                        System.out.println("Podaj nazwisko nowego klienta:");
                         String surname = scan.next();
-                        System.out.println("Podaj ID nowego klijenta:");
+                        System.out.println("Podaj ID nowego klienta:");
                         int Id = scan.nextInt();
                         Client client = new Client(name, surname, Id);
                         bank.add(client);
@@ -27,12 +27,12 @@ public class Main {
 
 
                     } else if (options2 == 2) {
-                        System.out.println("podaj id klijenta którego chessz usunąc");
+                        System.out.println("podaj id klienta którego chessz usunąc");
                         int cl = scan.nextInt();
                         bank.delate(cl);
 
                     } else if (options2 == 3) {
-                        System.out.println("podaj ID sklijenta którego chesz wyszukać");
+                        System.out.println("podaj ID klienta którego chesz wyszukać");
                         int id = scan.nextInt();
                         bank.finde(id);
                     } else if (options2 == 4) {
@@ -45,7 +45,7 @@ public class Main {
                 }
             } else if (options == 2) {
                 while (true) {
-                    System.out.println("RACHUNEK KLIJENTA: 1.DODAJ 2.USUŃ 3.WYSZUKAJ 4.PRZEGLADAJ 5.Wyjdz");
+                    System.out.println("RACHUNEK KLIENTA: 1.DODAJ 2.USUŃ 3.WYSZUKAJ 4.PRZEGLADAJ 5.Wyjdz");
                     int options3 = scan.nextInt();
                     if (options3 == 1) {
                             System.out.println("DODAJ: 1.rachunek normalny, 2.rachunek oszcednosciowy");
