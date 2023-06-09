@@ -1,18 +1,25 @@
+
 import java.util.ArrayList;
-import java.util.List;
+
 public class Bank {
     ArrayList<Client> clients = new ArrayList<Client>();
+    
 
-    public void add(Client client){
+    public  String getListClients(){
+        String listClients = "";
+        for(Client client : clients){
+            listClients += client.toString() + "\n";
+        }
+        return listClients;
+    }
+
+    public void addClinet(Client client){
         clients.add(client);
+        
     }
+  
 
-    @Override
-    public String toString() {
-        return "Bank:  " + " \' "+
-                "clients=  " + clients +
-                '}';
-    }
+  
     public void delate( int cl){
         for(Client client : clients){
             if(client.getId() == cl){
@@ -20,13 +27,26 @@ public class Bank {
             }
         }
     }
-    public String finde(int id){
+    
+
+
+    public void findeClient(int id){
         Client clientf = new Client();
         for(Client client : clients){
             if(client.getId() == id){
                 clientf = client;
             }
         }
-        return "SZUKANY KLIJENT: " + clientf;
+   
+
+
+        System.out.println("Szukany klient: "+ clientf);
     }
+
+    @Override
+    public String toString() {
+        return "Bank:  " + " \' "+
+                "clients=  " + clients +
+                '}' ;
+            }
 }

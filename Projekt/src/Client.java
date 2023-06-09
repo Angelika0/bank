@@ -1,10 +1,15 @@
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 public class Client {
     private String name;
     private String surname;
     private int Id;
-    private List<Account> accounts;
+    private List<NormalAccaount> normalAccaounts = new ArrayList<NormalAccaount>();
+    private List<SavingAccaunt> savingAccaunts = new ArrayList<SavingAccaunt>();
+
     public Client(){
         this.name="unknown";
         this.surname="unknow";
@@ -33,13 +38,7 @@ public class Client {
         this.surname = surname;
     }
 
-    public List<Account> getAcco() {
-        return accounts;
-    }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
+    
 
     public int getId() {
         return Id;
@@ -48,13 +47,47 @@ public class Client {
     public void setId(int id) {
         Id = id;
     }
+    public void addNormalAccaount(NormalAccaount normalAccaount){
+        normalAccaounts.add(normalAccaount);
+    }
+    public void delateNormalAccaount(String numerKonta){
+        for(NormalAccaount normalAccaount : normalAccaounts){
+            if(normalAccaount.getNumerKonta() == numerKonta){
+                normalAccaounts.remove(normalAccaount);
+            }
+        }
+    }
+    public void addSavingAccaount(SavingAccaunt savingAccaunt){
+        savingAccaunts.add(savingAccaunt);
+    }
+    public void delateSavingAccaount(SavingAccaunt savingAccaunt){
+        savingAccaunts.remove(savingAccaunt);
+    }
+  
+   public String findeNormalAccaount(String numerKonta){
+        NormalAccaount normalAccaountf = new NormalAccaount();
+        for(NormalAccaount normalAccaount : normalAccaounts){
+            if(normalAccaount.getNumerKonta() == numerKonta){
+                normalAccaountf = normalAccaount;
+            }
+        }
+        return normalAccaountf.toString();
+    }
 
     @Override
     public String toString() {
-        return "Client:" +
+        return  "\n"+
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", Id=" + Id +
+                ", Id=" + Id + "\n"+
+                ' ';
+    }
+    
+    public String toString2() {
+        return  "\n"+
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", Id=" + Id + ", NormalAccaounts: " + normalAccaounts + "\n"+ ", SavingAccaunts: " + savingAccaunts + "\n " +
                 ' ';
     }
 }
