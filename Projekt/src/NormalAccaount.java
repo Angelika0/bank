@@ -4,8 +4,7 @@ import java.util.ArrayList;
 public class NormalAccaount extends Account {
 
     private double balance =0.0;
-    private String numerKonta;
-    
+    private String numerKonta;    
     
     public NormalAccaount(){
         this.balance=0.0;
@@ -38,9 +37,7 @@ public class NormalAccaount extends Account {
     public String toString(){
         return "NormalAccaount: " + " \' "+
                 "balance= " + balance +
-                ", numerKonta= " + numerKonta +
-                +
-                '}' ;
+                ", numerKonta= " + numerKonta;
     }
     
     

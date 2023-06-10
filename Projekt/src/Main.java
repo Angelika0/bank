@@ -9,7 +9,7 @@ public class Main {
 
         while (true) {
 
-            System.out.println("MENU 1.KLIJENT 2.RACHUNEK KLIJENTA 3.ZAMKNIJ PROGRAM");
+            System.out.println("MENU 1.KLIENT 2.RACHUNEK KLIENTA 3.ZAMKNIJ PROGRAM");
             int options = scan.nextInt();
             if (options == 1) {
                 while (true) {
@@ -78,7 +78,7 @@ public class Main {
                             if(client.getId() == id){
                                 System.out.println("podaj numer rachunku który chcesz usunąć");
                                 String nr = scan.next();
-                                client.delateNormalAccaount(nr);
+                                client.deleteNormalAccount(nr);
                             }
                         }
 
@@ -95,6 +95,7 @@ public class Main {
                                 if(op==1){
                                     System.out.println("podaj numer rachunku który chcesz wyszukać");
                                     String nr = scan.next();
+                                    
                                     System.out.println( client.findeNormalAccaount(nr));
                                     break;
                                 }
@@ -109,7 +110,7 @@ public class Main {
                         }
 
                     } else if (options3 == 4) {
-                        //przeglądaj wszystkie rachunki klijenta
+                        //przeglądaj wszystkie rachunki klienta
                         System.out.println("podaj id klienta któremu chcesz przeglądać rachunki");
                         int id = scan.nextInt();
 

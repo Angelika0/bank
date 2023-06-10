@@ -45,8 +45,8 @@ public class Bank {
 
     @Override
     public String toString() {
-        return "Bank:  " + " \' "+
+        return "Bank: " + " "+
                 "clients=  " + clients +
-                '}' ;
+                ' ' ;
             }
 }

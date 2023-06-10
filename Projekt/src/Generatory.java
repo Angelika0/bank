@@ -9,15 +9,15 @@ public class Generatory {
         return id++;
     }
     public  String generujNumerKonta() {
-        List<Integer> cyfry = new ArrayList<>();
+        List<String> cyfry = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            cyfry.add(i);
+            cyfry.add(i+"");
         }
         
         Collections.shuffle(cyfry);
         
         StringBuilder numerKonta = new StringBuilder();
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 2; i++) {
             numerKonta.append(cyfry.get(i));
         }
         

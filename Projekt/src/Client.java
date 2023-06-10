@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 
 public class Client {
@@ -50,13 +51,17 @@ public class Client {
     public void addNormalAccaount(NormalAccaount normalAccaount){
         normalAccaounts.add(normalAccaount);
     }
-    public void delateNormalAccaount(String numerKonta){
-        for(NormalAccaount normalAccaount : normalAccaounts){
-            if(normalAccaount.getNumerKonta() == numerKonta){
-                normalAccaounts.remove(normalAccaount);
+    
+    public void deleteNormalAccount(String numerKonta) {
+        Iterator<NormalAccaount> iterator = normalAccaounts.iterator();
+        while (iterator.hasNext()) {
+            NormalAccaount normalAccaount = iterator.next();
+            if (numerKonta.equals(normalAccaount.getNumerKonta())) {
+                iterator.remove();
             }
         }
     }
+  
     public void addSavingAccaount(SavingAccaunt savingAccaunt){
         savingAccaunts.add(savingAccaunt);
     }
@@ -66,13 +71,17 @@ public class Client {
   
    public String findeNormalAccaount(String numerKonta){
         NormalAccaount normalAccaountf = new NormalAccaount();
+        
         for(NormalAccaount normalAccaount : normalAccaounts){
-            if(normalAccaount.getNumerKonta() == numerKonta){
+            if( numerKonta.equals(normalAccaount.getNumerKonta())){
                 normalAccaountf = normalAccaount;
+               
             }
         }
+        
         return normalAccaountf.toString();
     }
+
 
     @Override
     public String toString() {
@@ -87,7 +96,8 @@ public class Client {
         return  "\n"+
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", Id=" + Id + ", NormalAccaounts: " + normalAccaounts + "\n"+ ", SavingAccaunts: " + savingAccaunts + "\n " +
+                ", Id=" + Id + ", NormalAccaounts: " + normalAccaounts +
+                 "\n"+ ", SavingAccaunts: " + savingAccaunts + "\n " +
                 ' ';
     }
 }
