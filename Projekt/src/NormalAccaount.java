@@ -1,10 +1,12 @@
 import java.util.ArrayList;
-
+import java.util.List;
+import java.time.LocalDate;
 
 public class NormalAccaount extends Account {
 
     private double balance =0.0;
-    private String numerKonta;    
+    private String numerKonta; 
+    private  List<Operation> historyOperations = new ArrayList<Operation>();
     
     public NormalAccaount(){
         this.balance=0.0;
@@ -35,7 +37,7 @@ public class NormalAccaount extends Account {
         return balance;
     }
     public String toString(){
-        return "NormalAccaount: " + " \' "+
+        return " KONTO " + " \n "+
                 "balance= " + balance +
                 ", numerKonta= " + numerKonta;
     }

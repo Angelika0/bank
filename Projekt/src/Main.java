@@ -11,16 +11,25 @@ public class Main {
 
             System.out.println("MENU 1.KLIENT 2.RACHUNEK KLIENTA 3.ZAMKNIJ PROGRAM");
             int options = scan.nextInt();
+            try {
+                if (options >= 1 || options <= 3) {
+                   
+                }
+            } catch (Exception e) {
+                System.out.println("niepoprawnie wybrana opcja");
+            }
             if (options == 1) {
                 while (true) {
                     System.out.println("KLIENT: 1-DODAJ 2-USUŃ 3-WYSZUKAJ 4-PRZEGLĄDAJ 5-WYJDZ");
                     int options2 = scan.nextInt();
+                                 
                     if (options2 == 1) {
 
                         System.out.println("Podaj imie nowego klienta:");
                         String name =scan.next();
                         System.out.println("Podaj nazwisko nowego klienta:");
                         String surname = scan.next();
+
                         int id = generatory.generujId();
                         Client client = new Client(name,surname,id);
                         bank.addClinet(client);

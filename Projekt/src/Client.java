@@ -95,9 +95,9 @@ public class Client {
     public String toString2() {
         return  "\n"+
                 "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", Id=" + Id + ", NormalAccaounts: " + normalAccaounts +
-                 "\n"+ ", SavingAccaunts: " + savingAccaunts + "\n " +
+                ", surname='" + surname + '\'' +  "\n"+
+                ", Id=" + Id + "   " + normalAccaounts +
+                 "\n"+ "   " + savingAccaunts + "\n " +
                 ' ';
     }
 }

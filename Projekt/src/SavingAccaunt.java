@@ -37,9 +37,7 @@ public class SavingAccaunt {
                 "balance= " + balance +
                 ", numerKonta= " + numerKonta +
                 ", client= "  +
-                ", interest= " + interest +
-                '}' ;
-    }
+                ", interest= " + interest +"\n";  }
 
 
 }
