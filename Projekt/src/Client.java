@@ -50,6 +50,7 @@ public class Client {
     }
     public void addNormalAccaount(NormalAccaount normalAccaount){
         normalAccaounts.add(normalAccaount);
+        System.out.println("Dodano konto" +" o numerze: "+ normalAccaount.getNumerKonta() + "  do klienta: " + name + " " + surname);
     }
     
     public void deleteNormalAccount(String numerKonta) {
@@ -69,7 +70,7 @@ public class Client {
         savingAccaunts.remove(savingAccaunt);
     }
   
-   public String findeNormalAccaount(String numerKonta){
+   public NormalAccaount findeNormalAccaount(String numerKonta){
         NormalAccaount normalAccaountf = new NormalAccaount();
         
         for(NormalAccaount normalAccaount : normalAccaounts){
@@ -79,25 +80,49 @@ public class Client {
             }
         }
         
-        return normalAccaountf.toString();
+        return normalAccaountf;
     }
 
 
     @Override
     public String toString() {
-        return  "\n"+
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", Id=" + Id + "\n"+
+        return  "\n" + name + " " + surname + '\n' +
+                "Id: " + Id + "\n"+
                 ' ';
     }
     
-    public String toString2() {
-        return  "\n"+
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +  "\n"+
-                ", Id=" + Id + "   " + normalAccaounts +
-                 "\n"+ "   " + savingAccaunts + "\n " +
-                ' ';
+public String toString2() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("\n")
+      .append(name)
+      .append(" ")
+      .append(surname)
+      .append(" ")
+      .append("\n")
+      .append("Id: ")
+      .append(Id)
+      .append(" \n")
+      .append("Rodzaj konta:\n");
+
+    // Wypisanie kont normalnych
+    for (NormalAccaount accaount : normalAccaounts) {
+        sb.append("   ")
+          .append(accaount.toString())
+          .append("\n");
     }
+
+    // Wypisanie kont oszczędnościowych
+    for (SavingAccaunt account : savingAccaunts) {
+        sb.append("   ")
+          .append(account.toString())
+          .append("\n");
+    }
+
+    return sb.toString();
 }
+}
+
+
+
+
+

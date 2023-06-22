@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Bank {
     ArrayList<Client> clients = new ArrayList<Client>();
@@ -15,6 +16,7 @@ public class Bank {
 
     public void addClinet(Client client){
         clients.add(client);
+        System.out.println("Dodano klienta: " + client.getName() + " " + client.getSurname() + "  ID NOWEGO KLIJENTA:" + client.getId());
         
     }
   
@@ -43,10 +45,15 @@ public class Bank {
         System.out.println("Szukany klient: "+ clientf);
     }
 
-    @Override
-    public String toString() {
-        return "Bank: " + " "+
-                "clients=  " + clients +
-                ' ' ;
-            }
+  @Override
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+
+    for (Client client : clients) {
+        sb.append(client.toString()).append("  ");
+    }
+    sb.setLength(sb.length() - 2); // Jeśli chcesz usunąć ostatni przecinek i spację
+
+    return sb.toString();
+}
 }

@@ -1,41 +1,23 @@
+import java.time.LocalDate;
 public class Operation {
-    private String operation;
-    private double amount;
-    private double balance;
-    private String date;
-    private String time;
-    
-    public Operation(String operation, double amount, double balance, String date, String time){
-        this.operation = operation;
-        this.amount = amount;
-        this.balance = balance;
-        this.date = date;
-        this.time = time;
-    }
-    
-    public String getOperation(){
-        return operation;
-    }
-    
-    public double getAmount(){
-        return amount;
-    }
-    
-    public double getBalance(){
-        return balance;
-    }
-    
-    public String getDate(){
-        return date;
-    }
-    
-    public String getTime(){
-        return time;
-    }
-    
-    public String toString(){
-        return "Operation: " + operation + " " + amount + " " + balance + " " + date + " " + time;
-    }
+   private double amount;
+   private LocalDate date;
+   public Operation(double amount, LocalDate date) {
+       this.amount = amount;
+       this.date = date;
+   }
+   public double getAmount() {
+       return amount;
+   }
+    public LocalDate getDate() {
+         return date;
+    }  
+    @Override
+   public String toString() {
+        String operationType = amount > 0 ? "Wpłata" : "wypłata";
+       return operationType + "  \n" + amount + ", date=" + date + ' ';
+   }
+
    
    
    
