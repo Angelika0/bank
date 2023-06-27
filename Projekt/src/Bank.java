@@ -34,6 +34,9 @@ public class Bank  {
               if(client.getId() == cl){
                 iterator.remove();
               }
+              else{
+                  System.out.println("Nie ma takiego klienta");
+              }
          }
     }
     

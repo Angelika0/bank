@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import java.time.LocalDate;
@@ -13,6 +14,9 @@ public class Main {
         Generatory generatory = new Generatory();
 
         while (true) {
+            try {
+
+    
 
             System.out.println("MENU 1.KLIENT 2.RACHUNEK KLIENTA  3.ZAMKNIJ PROGRAM");
             int options = scan.nextInt();
@@ -24,20 +28,31 @@ public class Main {
                                  
                     if (options2 == 1) {
 
-                        System.out.println("Podaj imie nowego klienta:");
-                        String name =scan.next();
-                        System.out.println("Podaj nazwisko nowego klienta:");
-                        String surname = scan.next();
+                           
+                            System.out.println("Podaj imię: ");
+                            String name = scan.next();
+                            System.out.println("Podaj nazwisko nowego klienta:");
+                            String surname = scan.next();
 
-                        int id = generatory.generujId();
-                        Client client = new Client(name,surname,id);
-                        bank.addClinet(client);
+                            if (name.matches("[A-Z][a-z]*") && surname.matches("[A-Z][a-z]*")) {
+                                int id = generatory.generujId();
+                                Client client = new Client(name,surname,id);
+                                 bank.addClinet(client);
+                                
+                            } else {
+                                System.out.println("Niepoprawne dane. Spróbuj ponownie.");
+                            }
+                       
+                    }
+                
                     
 
-                    } else if (options2 == 2) {
+                     else if (options2 == 2) {
                         System.out.println("podaj id klienta którego chessz usunąc");
                         int cl = scan.nextInt();
+
                         bank.delate(cl);
+                        
 
                     } else if (options2 == 3) {
                         System.out.println("podaj ID klienta którego chesz wyszukać");
@@ -73,7 +88,17 @@ public class Main {
                                 
                             }
                             else if(op==2){
-                                //dodawanie rachunku oszcednosciowego 
+                                //dodawanie rachunku oszcednosciowego
+                                System.out.println("podaj id klienta któremu chcesz dodać rachunek");
+                                int id = scan.nextInt();
+                                for(Client client : bank.clients){
+                                    if(client.getId() == id){
+                                        System.out.println("podaj stan początkowy rachunku");
+                                        double balance = scan.nextDouble();
+                                        String nr = generatory.generujNumerKonta();
+                                        client.addSavingAccaount(new SavingAccaunt(balance,nr,client));
+                                    }
+                                }
                             }
                             else {
                                 System.out.println("błędna opcja");
@@ -134,10 +159,13 @@ public class Main {
                         System.out.println("na jaki rodzaj konta chcesz zrobic przelwe? 1.normalne 2.oszczędnościowe");
                         int op = scan.nextInt();
                         if(op==1){
-                        System.out.println("podaj id klienta który chcesz zrobić przelew");
+                        System.out.println("podaj id klienta który chce zrobić przelew");
                         int id = scan.nextInt();
                         for(Client client : bank.clients){
                             if(client.getId() == id){
+                                System.out.println("z jakiego konta chcesz zrobić przelew? 1.normalne 2.oszczędnościowe");
+                                int op2 = scan.nextInt();
+                                if(op2==1){
                                 System.out.println("podaj numer rachunku z którego chcesz zrobić przelew");
                                 String nr = scan.next();
                                 System.out.println("podaj id klienta na którego chcesz zrobić przelew");
@@ -151,7 +179,25 @@ public class Main {
                                         client.findeNormalAccaount(nr).transfertoNormalAccaount(kwota,client2.findeNormalAccaount(nr2));
                                     }
                                 }
-                            
+                                }
+                                else if(op2==2){
+                                    System.out.println("podaj numer rachunku z którego chcesz zrobić przelew");
+                                String nr = scan.next();
+                                System.out.println("podaj id klienta na którego chcesz zrobić przelew");
+                                int id2 = scan.nextInt();
+                                for(Client client2 : bank.clients){
+                                    if(client2.getId() == id2){
+                                        System.out.println("podaj numer rachunku na który chcesz zrobić przelew");
+                                        String nr2 = scan.next();
+                                        System.out.println("podaj kwote przelewu");
+                                        double kwota = scan.nextDouble();
+                                        client.findeSavingAccaount(nr).transfertoNormalAccaount(kwota,client2.findeNormalAccaount(nr2));
+                                    }
+                                }
+                                }
+                                else {
+                                    System.out.println("błędna opcja");
+                                }
                             }
                         }
                     }
@@ -184,11 +230,26 @@ public class Main {
                         int id = scan.nextInt();
                         for(Client client : bank.clients){
                             if(client.getId() == id){
+                                System.out.println("PODAJ RODZAJ KONTA 1.normalne 2.oszczędnościowe");
+                                int op = scan.nextInt();
+                                if(op==1){
                                 System.out.println("podaj numer rachunku z którego chcesz wypłacić pieniądze");
                                 String nr = scan.next();
                                 System.out.println("podaj kwote wypłaty");
                                 double kwota = scan.nextDouble();
                                 client.findeNormalAccaount(nr).withdraw(kwota);
+                                }
+                                else if(op==2){
+                                   System.out.println("podaj numer rachunku z którego chcesz wypłacić pieniądze");
+                                String nr = scan.next();
+                                System.out.println("podaj kwote wypłaty");
+                                double kwota = scan.nextDouble();
+                                client.findeSavingAccaount(nr).withdraw(kwota);
+
+                                }
+                                else {
+                                    System.out.println("błędna opcja");
+                                }
                             }
                         }
 
@@ -198,11 +259,25 @@ public class Main {
                         int id = scan.nextInt();
                         for(Client client : bank.clients){
                             if(client.getId() == id){
+                                System.out.println("wpłata na jakie konto: 1.normalne 2.oszczędnościowe");
+                                int op = scan.nextInt();
+                                if(op==1){
                                 System.out.println("podaj numer rachunku na który chcesz wpłacić pieniądze");
                                 String nr = scan.next();
                                 System.out.println("podaj kwote wpłaty");
                                 double kwota = scan.nextDouble();
                                 client.findeNormalAccaount(nr).deposit(kwota);
+                                }
+                                else if(op==2){
+                                    System.out.println("podaj numer rachunku na który chcesz wpłacić pieniądze");
+                                String nr = scan.next();
+                                System.out.println("podaj kwote wpłaty");
+                                double kwota = scan.nextDouble();
+                                client.findeSavingAccaount(nr).deposit(kwota);
+                                }
+                                else {
+                                    System.out.println("błędna opcja");
+                                }
                             }
                         }
 
@@ -214,7 +289,11 @@ public class Main {
                          System.out.println("podaj id klienta któremu chcesz sprawdzić historie operacji");
                         int id = scan.nextInt();
                         for(Client client : bank.clients){
+
                             if(client.getId() == id){
+                                System.out.println("historie jakiego konta chcesz sprawdzić: 1.normalne 2.oszczędnościowe");
+                                int op2 = scan.nextInt();
+                                if(op2==1){
                                 System.out.println("podaj numer rachunku którego historie operacji chcesz sprawdzić");
                                 String nr = scan.next();
                                 System.out.println("podaj zakres czasowy historii operacji");
@@ -237,6 +316,32 @@ public class Main {
                                 
 
                                 client.findeNormalAccaount(nr).printOperationsHistory(date1, date2);
+                                }
+                                else if(op2==2){
+                                    System.out.println("podaj numer rachunku którego historie operacji chcesz sprawdzić");
+                                String nr = scan.next();
+                                System.out.println("podaj zakres czasowy historii operacji");
+                                System.out.println("podaj date początkową");
+                                System.out.println("dzień:");
+                                Integer dd = scan.nextInt();
+                                System.out.println("miesiąc:");
+                                Integer mm = scan.nextInt();
+                                System.out.println("rok:");
+                                Integer yy = scan.nextInt();
+                                LocalDate date1 = LocalDate.of(yy, mm, dd);
+                                System.out.println("podaj date końcową");
+                                System.out.println("dzień:");
+                                Integer dd2 = scan.nextInt();
+                                System.out.println("miesiąc:");
+                                Integer mm2 = scan.nextInt();
+                                System.out.println("rok:");
+                                Integer yy2 = scan.nextInt();
+                                LocalDate date2 = LocalDate.of(yy2, mm2, dd2);
+                                client.findeSavingAccaount(nr).printOperationsHistory(date1, date2);
+                                }
+                                else{
+                                    System.out.println("błędna opcja");
+                                }
                                 
                             }
                         }
@@ -277,5 +382,16 @@ public class Main {
                 System.out.println("niepoprawnie wybrana opcja");
             }
         }
+        
+    
+    
+
+    catch (InputMismatchException e) {
+    System.out.println("Niepoprawny typ danych. Podaj poprawną wartość.");
+    scan.nextLine(); // Czyści bufor wejściowy
+        }
     }
+    scan.close();
+
+    } 
 }

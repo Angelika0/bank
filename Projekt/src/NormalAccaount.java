@@ -28,13 +28,13 @@ public class NormalAccaount extends Account {
     
     public void deposit(double amount){
         balance += amount;
-        historyOperations.add(new Operation(amount, LocalDate.now()));
+        historyOperations.add(new Operation(amount,"wplata", LocalDate.now()));
 
     }
     public void withdraw(double amount){
         if(balance >= amount){
             balance -= amount;
-            historyOperations.add(new Operation(-amount, LocalDate.now()));
+            historyOperations.add(new Operation(-amount,"wypłata", LocalDate.now()));
         }
         else {
             System.out.println("Brak środków na koncie");
@@ -44,7 +44,7 @@ public class NormalAccaount extends Account {
         if(balance >= amount){
             balance -= amount;
             account.deposit(amount);
-            historyOperations.add(new Operation(-amount, LocalDate.now()));
+            historyOperations.add(new Operation(-amount,"przelew", LocalDate.now()));
         }
         else {
             System.out.println("Brak środków na koncie");
@@ -54,7 +54,7 @@ public class NormalAccaount extends Account {
         if(balance >= amount){
             balance -= amount;
             account.deposit(amount);
-            historyOperations.add(new Operation(-amount, LocalDate.now()));
+            historyOperations.add(new Operation(-amount,"przelew", LocalDate.now()));
         }
         else {
             System.out.println("Brak środków na koncie");

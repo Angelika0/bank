@@ -1,8 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.Iterator;
-import java.io.Serializable;
+
 
 
 public class Client {
@@ -87,6 +87,20 @@ public class Client {
         }
         
         return normalAccaountf;
+    }
+    public SavingAccaunt findeSavingAccaount(String numerKonta){
+        SavingAccaunt savingAccaountf = new SavingAccaunt();
+           
+        for(Account account: accaounts){
+            if(account instanceof SavingAccaunt){
+            if( numerKonta.equals(account.getNumerKonta())){
+                savingAccaountf = (SavingAccaunt)account;
+               
+            }
+        }
+        }
+        
+        return savingAccaountf;
     }
 
 

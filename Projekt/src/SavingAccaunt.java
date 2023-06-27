@@ -5,6 +5,7 @@ import java.util.List;
 public class SavingAccaunt extends Account {
   private double balance =0.0;
     private String numerKonta; 
+    private double interestRate=0.05;
     private  List<Operation> historyOperations = new ArrayList<Operation>();
     
     public SavingAccaunt(){
@@ -27,13 +28,15 @@ public class SavingAccaunt extends Account {
     
     public void deposit(double amount){
         balance += amount;
-        historyOperations.add(new Operation(amount, LocalDate.now()));
+        historyOperations.add(new Operation(amount,"wpłata", LocalDate.now()));
 
     }
     public void withdraw(double amount){
         if(balance >= amount){
             balance -= amount;
-            historyOperations.add(new Operation(-amount, LocalDate.now()));
+            applyInterestRate();
+            historyOperations.add(new Operation(-amount,"wypłata", LocalDate.now()));
+            
         }
         else {
             System.out.println("Brak środków na koncie");
@@ -42,8 +45,9 @@ public class SavingAccaunt extends Account {
     public void transfertoNormalAccaount(double amount, NormalAccaount account){
         if(balance >= amount){
             balance -= amount;
+            applyInterestRate();
             account.deposit(amount);
-            historyOperations.add(new Operation(-amount, LocalDate.now()));
+            historyOperations.add(new Operation(-amount,"przelew", LocalDate.now()));
         }
         else {
             System.out.println("Brak środków na koncie");
@@ -52,8 +56,9 @@ public class SavingAccaunt extends Account {
     public void transfertoSavingAccaount(double amount, SavingAccaunt account){
         if(balance >= amount){
             balance -= amount;
+            applyInterestRate();
             account.deposit(amount);
-            historyOperations.add(new Operation(-amount, LocalDate.now()));
+            historyOperations.add(new Operation(-amount,"przelew", LocalDate.now()));
         }
         else {
             System.out.println("Brak środków na koncie");
@@ -79,13 +84,15 @@ public class SavingAccaunt extends Account {
             }
         }
     }
-  
+  public void applyInterestRate(){
+        balance += balance * interestRate;
+    }
  
   
       
     @Override
     public String toString(){
-        return " KONTO OSOOBISTE " + " \n "+
+        return " KONTO  OSZCZĘDNOSCIOWE " + " \n "+
                 "Dostępne środki: " + balance +
                 "Numer Konta= " + numerKonta;
     }
