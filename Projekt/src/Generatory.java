@@ -1,9 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.io.Serializable;
 
 
-public class Generatory {
+public class Generatory{
     int id = 1;
     public int generujId() {
         return id++;

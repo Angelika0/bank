@@ -1,8 +1,13 @@
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class Bank {
+import java.util.Iterator;
+
+
+
+
+
+public class Bank  {
     ArrayList<Client> clients = new ArrayList<Client>();
     
 
@@ -23,11 +28,13 @@ public class Bank {
 
   
     public void delate( int cl){
-        for(Client client : clients){
-            if(client.getId() == cl){
-                clients.remove(client);
-            }
-        }
+       Iterator<Client> iterator = clients.iterator();
+         while(iterator.hasNext()){
+              Client client = iterator.next();
+              if(client.getId() == cl){
+                iterator.remove();
+              }
+         }
     }
     
 

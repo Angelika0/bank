@@ -1,30 +1,20 @@
 import java.util.Scanner;
+
 import java.time.LocalDate;
+
 
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Bank bank = new Bank();
 
-        // NormalAccaount normalAccaount = new NormalAccaount(0, "123", new Client("Jan", "Kowalski", 1));
-        // NormalAccaount normalAccaount2 = new NormalAccaount(0, "123", new Client("Jan", "Kowalski", 2));
-        // normalAccaount.deposit(1000);
-       
-        // normalAccaount.withdraw(500);
-        // normalAccaount.withdraw(200);
-        // normalAccaount.deposit(100);
-        // normalAccaount.withdraw(100);
-        // normalAccaount.deposit(500);
-        // // normalAccaount.transfer(250, normalAccaount2);
-
-        // normalAccaount.printOperationsHistory(LocalDate.of(2023,1,1), LocalDate.of(2023,06,30));
-        // normalAccaount2.printOperationHistorybyAmount(50, 500);
+      
         
         Generatory generatory = new Generatory();
 
         while (true) {
 
-            System.out.println("MENU 1.KLIENT 2.RACHUNEK KLIENTA 3.ZAMKNIJ PROGRAM");
+            System.out.println("MENU 1.KLIENT 2.RACHUNEK KLIENTA  3.ZAMKNIJ PROGRAM");
             int options = scan.nextInt();
            
             if (options == 1) {
@@ -140,6 +130,7 @@ public class Main {
 
                     } else if (options3 == 5) {
                         // zrób przelew
+                        
                         System.out.println("na jaki rodzaj konta chcesz zrobic przelwe? 1.normalne 2.oszczędnościowe");
                         int op = scan.nextInt();
                         if(op==1){
@@ -165,6 +156,7 @@ public class Main {
                         }
                     }
                     else if(op==2){
+                       
                         //przelew na rachunek oszczędnościowy
                         System.out.println("podaj id klienta który chcesz zrobić przelew");
                         int id = scan.nextInt();
@@ -184,8 +176,10 @@ public class Main {
                         System.out.println("błędna opcja");
                     }
 
-                    } else if (options3 == 6) {
+                    } else if (options3 == 6) 
+                    {
                         //wypłata
+                        
                         System.out.println("podaj id klienta któremu chcesz wypłacić pieniądze");
                         int id = scan.nextInt();
                         for(Client client : bank.clients){
@@ -274,9 +268,12 @@ public class Main {
                         System.out.println("niepoprawnie wybrana opcja");
                     } 
                 }
-            } else if (options == 3) {
+            }
+             
+            else if(options == 3){
                 break;
-            } else {
+                
+        }else {
                 System.out.println("niepoprawnie wybrana opcja");
             }
         }

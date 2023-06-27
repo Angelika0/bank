@@ -86,9 +86,9 @@ public class NormalAccaount extends Account {
       
     @Override
     public String toString(){
-        return " KONTO OSOBISTE " + " \n "+
-                "Dostępne środki: " + balance + 
-                " Numer Konta= " + numerKonta;
+        return " KONTO OSOOBISTE " + " \n "+
+                "Dostępne środki: " + balance +
+                "Numer Konta= " + numerKonta;
     }
     
     

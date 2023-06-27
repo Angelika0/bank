@@ -2,14 +2,15 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.io.Serializable;
 
 
 public class Client {
     private String name;
     private String surname;
     private int Id;
-    private List<NormalAccaount> normalAccaounts = new ArrayList<NormalAccaount>();
-    private List<SavingAccaunt> savingAccaunts = new ArrayList<SavingAccaunt>();
+    private List<Account> accaounts = new ArrayList<Account>();
+    
 
     public Client(){
         this.name="unknown";
@@ -49,35 +50,40 @@ public class Client {
         Id = id;
     }
     public void addNormalAccaount(NormalAccaount normalAccaount){
-        normalAccaounts.add(normalAccaount);
+       accaounts.add(normalAccaount);
         System.out.println("Dodano konto" +" o numerze: "+ normalAccaount.getNumerKonta() + "  do klienta: " + name + " " + surname);
     }
     
-    public void deleteNormalAccount(String numerKonta) {
-        Iterator<NormalAccaount> iterator = normalAccaounts.iterator();
-        while (iterator.hasNext()) {
-            NormalAccaount normalAccaount = iterator.next();
+  public void deleteNormalAccount(String numerKonta) {
+    Iterator<Account> iterator = accaounts.iterator();
+    while (iterator.hasNext()) {
+        Account account = iterator.next();
+        if (account instanceof NormalAccaount) {
+            NormalAccaount normalAccaount = (NormalAccaount) account;
             if (numerKonta.equals(normalAccaount.getNumerKonta())) {
                 iterator.remove();
             }
         }
     }
+}
   
     public void addSavingAccaount(SavingAccaunt savingAccaunt){
-        savingAccaunts.add(savingAccaunt);
+        accaounts.add(savingAccaunt);
     }
     public void delateSavingAccaount(SavingAccaunt savingAccaunt){
-        savingAccaunts.remove(savingAccaunt);
+        accaounts.remove(savingAccaunt);
     }
   
    public NormalAccaount findeNormalAccaount(String numerKonta){
         NormalAccaount normalAccaountf = new NormalAccaount();
-        
-        for(NormalAccaount normalAccaount : normalAccaounts){
-            if( numerKonta.equals(normalAccaount.getNumerKonta())){
-                normalAccaountf = normalAccaount;
+           
+        for(Account account: accaounts){
+            if(account instanceof NormalAccaount){
+            if( numerKonta.equals(account.getNumerKonta())){
+                normalAccaountf = (NormalAccaount)account;
                
             }
+        }
         }
         
         return normalAccaountf;
@@ -105,17 +111,21 @@ public String toString2() {
       .append("Rodzaj konta:\n");
 
     // Wypisanie kont normalnych
-    for (NormalAccaount accaount : normalAccaounts) {
+    for (Account accaount : accaounts) {
+        if(accaount instanceof NormalAccaount){
         sb.append("   ")
           .append(accaount.toString())
           .append("\n");
+        }
     }
 
     // Wypisanie kont oszczędnościowych
-    for (SavingAccaunt account : savingAccaunts) {
+    for (Account account : accaounts) {
+        if(account instanceof SavingAccaunt){
         sb.append("   ")
           .append(account.toString())
           .append("\n");
+        }
     }
 
     return sb.toString();
