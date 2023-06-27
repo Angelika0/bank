@@ -3,10 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SavingAccaunt extends Account {
-  private double balance =0.0;
-    private String numerKonta; 
+  
     private double interestRate=0.05;
-    private  List<Operation> historyOperations = new ArrayList<Operation>();
+   
     
     public SavingAccaunt(){
         this.balance=0.0;

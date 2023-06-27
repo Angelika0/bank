@@ -81,7 +81,7 @@ public class Main {
                                         System.out.println("podaj stan początkowy rachunku");
                                         double balance = scan.nextDouble();
                                         String nr = generatory.generujNumerKonta();
-                                        client.addNormalAccaount(new NormalAccaount(balance,nr,client));
+                                        client.addNormalAccaount(new NormalAccaount(balance,nr));
                                     }
                                 }
                                                            

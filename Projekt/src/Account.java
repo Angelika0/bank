@@ -1,7 +1,12 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
  abstract class Account{
-            
+    protected double balance;
+    protected String numerKonta; 
+    protected  List<Operation> historyOperations = new ArrayList<Operation>();
+  
           public abstract void deposit(double amount);   
             public abstract void withdraw(double amount);
             public abstract double getBalance();

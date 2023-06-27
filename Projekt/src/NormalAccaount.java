@@ -4,16 +4,14 @@ import java.time.LocalDate;
 
 public class NormalAccaount extends Account {
 
-    private double balance =0.0;
-    private String numerKonta; 
-    private  List<Operation> historyOperations = new ArrayList<Operation>();
+  
     
-    public NormalAccaount(){
+   public NormalAccaount(){
         this.balance=0.0;
         this.numerKonta=" ";
         
     }
-    public NormalAccaount(double balance, String numerKonta, Client client){
+    public NormalAccaount(double balance, String numerKonta){
         this.balance=balance;
         this.numerKonta=numerKonta;
         this.historyOperations = new ArrayList<Operation>();
