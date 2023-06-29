@@ -96,7 +96,6 @@ public class SavingAccaunt extends Account {
                 "Numer Konta= " + numerKonta;
     }
     
-    
 
     
 

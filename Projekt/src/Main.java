@@ -1,7 +1,11 @@
+import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import java.time.LocalDate;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 
 public class Main {
@@ -96,9 +100,25 @@ public class Main {
                                         System.out.println("podaj stan początkowy rachunku");
                                         double balance = scan.nextDouble();
                                         String nr = generatory.generujNumerKonta();
-                                        client.addSavingAccaount(new SavingAccaunt(balance,nr,client));
-                                    }
-                                }
+                                          SavingAccaunt savingAccount = new SavingAccaunt(balance, nr, client);
+                                            client.addSavingAccaount(savingAccount);
+                                                TimerTask task = new TimerTask() {
+                                                    @Override
+                                                    public void run() {
+                                                        savingAccount.applyInterestRate();
+                                                        System.out.println("Saldo po zastosowaniu oprocentowania: " + savingAccount.getBalance());
+                                                    }
+                                                };
+
+                                                Timer timer = new Timer();
+                                                Calendar calendar = Calendar.getInstance();
+                                                calendar.add(Calendar.MINUTE, 1);
+                                                long delay = 0; // początkowe opóźnienie
+                                                long period = 60 * 1000; // okres powtarzania (1 minuta = 60 000 milisekund)
+                                                timer.scheduleAtFixedRate(task, calendar.getTime(), period);
+                                             }
+                                      }
+                                
                             }
                             else {
                                 System.out.println("błędna opcja");
